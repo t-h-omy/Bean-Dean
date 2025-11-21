@@ -19,8 +19,26 @@ class Game {
     this.encounterSystem = new EncounterSystem(this);
     this.combat = null;
     this.currentEvent = null;
-    this.state = 'exploration'; // exploration, combat, event, gameover
+    this.state = 'intro'; // intro, exploration, combat, event, gameover
+    this.gameInitialized = false;
     
+    this.setupIntroScreen();
+  }
+
+  setupIntroScreen() {
+    const startBtn = document.getElementById('start-game-btn');
+    startBtn.addEventListener('click', () => {
+      this.startGame();
+    });
+  }
+
+  startGame() {
+    // Hide intro overlay
+    const introOverlay = document.getElementById('intro-overlay');
+    introOverlay.style.display = 'none';
+    
+    // Initialize game
+    this.state = 'exploration';
     this.initializeGame();
     this.setupEventListeners();
     this.render();

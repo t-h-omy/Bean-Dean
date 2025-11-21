@@ -576,3 +576,81 @@ button:active {
     margin-top: 20px;
   }
 }
+
+/* Intro/How-To Screen Styles */
+.intro-content {
+  text-align: center;
+  max-width: 600px;
+}
+
+.intro-content h1 {
+  color: var(--primary-green);
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.intro-content h2 {
+  color: var(--light-green);
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+
+.how-to-section {
+  text-align: left;
+  margin: 15px 0;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid var(--primary-green);
+}
+
+.how-to-section h3 {
+  color: var(--primary-green);
+  font-size: 1.1em;
+  margin-bottom: 8px;
+}
+
+.how-to-section p {
+  color: var(--text-color);
+  line-height: 1.6;
+  margin: 5px 0;
+}
+
+.start-btn {
+  background: var(--primary-green);
+  color: white;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 15px 40px;
+  margin-top: 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.start-btn:hover {
+  background: var(--light-green);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+}
+
+.start-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+@media (min-width: 768px) {
+  .intro-content h1 {
+    font-size: 2.5em;
+  }
+  
+  .intro-content h2 {
+    font-size: 1.8em;
+  }
+  
+  .how-to-section {
+    margin: 20px 0;
+  }
+}
