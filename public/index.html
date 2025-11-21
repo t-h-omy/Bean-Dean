@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="Garden Bean - A Progressive Web App card game about protecting your garden">
+  <meta name="theme-color" content="#2d5016">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>Garden Bean</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>🌱 Garden Bean</h1>
+      <div id="tick-counter">Ticks: 0</div>
+    </header>
+
+    <main>
+      <div id="game-container">
+        <div id="grid"></div>
+        
+        <aside id="sidebar">
+          <div id="player-info">
+            <h2>Player Info</h2>
+          </div>
+          
+          <div id="controls">
+            <h3>Controls</h3>
+            <p class="desktop-only">Use Arrow Keys or WASD to move</p>
+            <p class="mobile-only">Tap grid tiles to move or use D-pad below</p>
+          </div>
+          
+          <div id="mobile-controls" class="mobile-only">
+            <div class="dpad">
+              <button class="dpad-btn dpad-up" data-direction="up">▲</button>
+              <button class="dpad-btn dpad-left" data-direction="left">◀</button>
+              <button class="dpad-btn dpad-down" data-direction="down">▼</button>
+              <button class="dpad-btn dpad-right" data-direction="right">▶</button>
+            </div>
+          </div>
+          
+          <div id="legend">
+            <h3>Legend</h3>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #4a90e2;"></div>
+              <span>Player</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #e8b44c;"></div>
+              <span>Harvest</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #e74c3c;"></div>
+              <span>Enemy</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #9b59b6;"></div>
+              <span>Event</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #1abc9c;"></div>
+              <span>Shop</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <!-- Combat Overlay -->
+    <div id="combat-overlay" class="overlay" style="display: none;">
+      <div class="overlay-content">
+        <h2>⚔️ Combat</h2>
+        <div class="combat-info"></div>
+        <div class="hand"></div>
+        <button id="end-turn-btn">End Turn</button>
+      </div>
+    </div>
+
+    <!-- Event Overlay -->
+    <div id="event-overlay" class="overlay" style="display: none;">
+      <div class="overlay-content">
+      </div>
+    </div>
+
+    <!-- How To Play / Intro Overlay -->
+    <div id="intro-overlay" class="overlay" style="display: block;">
+      <div class="overlay-content intro-content">
+        <h1>🌱 Garden Bean</h1>
+        <h2>How to Play</h2>
+        
+        <div class="how-to-section">
+          <h3>🎯 Objective</h3>
+          <p>Navigate the garden grid, rescue harvest fields before they decay, and defeat enemies using your card deck!</p>
+        </div>
+
+        <div class="how-to-section">
+          <h3>🎮 Controls</h3>
+          <p class="desktop-only"><strong>Desktop:</strong> Use Arrow Keys or WASD to move</p>
+          <p class="mobile-only"><strong>Mobile:</strong> Tap adjacent tiles or use the D-pad to move</p>
+        </div>
+
+        <div class="how-to-section">
+          <h3>⏰ Time System</h3>
+          <p>Each move costs 2-10 ticks. Harvest fields lose 1 HP per tick. Rescue them before they reach 0 HP!</p>
+        </div>
+
+        <div class="how-to-section">
+          <h3>⚔️ Combat</h3>
+          <p>Draw 5 cards and use 3 energy per turn. Play attack and defense cards to defeat enemies and gain XP!</p>
+        </div>
+
+        <div class="how-to-section">
+          <h3>📊 Progression</h3>
+          <p>Level up to gain talent points. Spend them on talents that improve your abilities and cards!</p>
+        </div>
+
+        <button id="start-game-btn" class="start-btn">Start Game</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="main.js"></script>
+  <script>
+    // Register service worker
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js')
+          .then(reg => console.log('Service Worker registered'))
+          .catch(err => console.log('Service Worker registration failed:', err));
+      });
+    }
+  </script>
+</body>
+</html>
