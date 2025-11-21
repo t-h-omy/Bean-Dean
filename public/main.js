@@ -54,6 +54,28 @@ class Game {
         this.handleMovement(e);
       }
     });
+    
+    // Mobile D-pad controls
+    const dpadButtons = document.querySelectorAll('.dpad-btn');
+    dpadButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        if (this.state === 'exploration') {
+          e.preventDefault();
+          const direction = btn.dataset.direction;
+          this.movePlayer(direction);
+        }
+      });
+    });
+    
+    // Grid tile tap controls for mobile
+    document.addEventListener('click', (e) => {
+      if (this.state === 'exploration') {
+        const tile = e.target.closest('.tile');
+        if (tile) {
+          this.handleTileTap(tile);
+        }
+      }
+    });
   }
 
   handleMovement(e) {
@@ -99,6 +121,33 @@ class Game {
     this.handleEncounter(tile);
     
     this.render();
+  }
+
+  handleTileTap(tileElement) {
+    // Get tile coordinates from grid position
+    const tiles = Array.from(document.querySelectorAll('.tile'));
+    const tileIndex = tiles.indexOf(tileElement);
+    if (tileIndex === -1) return;
+    
+    const tileX = tileIndex % this.grid.width;
+    const tileY = Math.floor(tileIndex / this.grid.width);
+    
+    // Calculate direction to move
+    const deltaX = tileX - this.player.x;
+    const deltaY = tileY - this.player.y;
+    
+    // Only allow movement to adjacent tiles (including diagonals for better mobile UX)
+    if (Math.abs(deltaX) <= 1 && Math.abs(deltaY) <= 1 && (deltaX !== 0 || deltaY !== 0)) {
+      // Determine primary direction
+      let direction;
+      if (Math.abs(deltaX) > Math.abs(deltaY)) {
+        direction = deltaX > 0 ? 'right' : 'left';
+      } else {
+        direction = deltaY > 0 ? 'down' : 'up';
+      }
+      
+      this.movePlayer(direction);
+    }
   }
 
   handleEncounter(tile) {

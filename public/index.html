@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="description" content="Garden Bean - A Progressive Web App card game about protecting your garden">
   <meta name="theme-color" content="#2d5016">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="mobile-web-app-capable" content="yes">
   <title>Garden Bean</title>
   <link rel="stylesheet" href="style.css">
   <link rel="manifest" href="manifest.json">
@@ -27,7 +30,17 @@
           
           <div id="controls">
             <h3>Controls</h3>
-            <p>Use Arrow Keys or WASD to move</p>
+            <p class="desktop-only">Use Arrow Keys or WASD to move</p>
+            <p class="mobile-only">Tap grid tiles to move or use D-pad below</p>
+          </div>
+          
+          <div id="mobile-controls" class="mobile-only">
+            <div class="dpad">
+              <button class="dpad-btn dpad-up" data-direction="up">▲</button>
+              <button class="dpad-btn dpad-left" data-direction="left">◀</button>
+              <button class="dpad-btn dpad-down" data-direction="down">▼</button>
+              <button class="dpad-btn dpad-right" data-direction="right">▶</button>
+            </div>
           </div>
           
           <div id="legend">
