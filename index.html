@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="refresh" content="0; url=public/index.html">
+  <title>Garden Bean - Redirecting...</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f4f1e8;
+      color: #2c3e50;
+    }
+    .redirect-message {
+      text-align: center;
+      padding: 40px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    .redirect-message h1 {
+      color: #2d5016;
+      margin-bottom: 20px;
+    }
+    .redirect-message p {
+      font-size: 1.1em;
+      margin-bottom: 20px;
+    }
+    .redirect-message a {
+      color: #2d5016;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 10px 20px;
+      border: 2px solid #2d5016;
+      border-radius: 5px;
+      display: inline-block;
+      transition: all 0.3s;
+    }
+    .redirect-message a:hover {
+      background: #2d5016;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="redirect-message">
+    <h1>🌱 Garden Bean</h1>
+    <p>Redirecting to game...</p>
+    <p>If you are not redirected automatically, <a href="public/index.html">click here to play</a>.</p>
+  </div>
+  <script>
+    // Fallback redirect in case meta refresh doesn't work
+    setTimeout(function() {
+      window.location.href = 'public/index.html';
+    }, 100);
+  </script>
+</body>
+</html>
