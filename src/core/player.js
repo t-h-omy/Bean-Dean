@@ -85,7 +85,7 @@ export class Player {
    * Spend a talent point on a talent
    */
   spendTalentPoint(talentName) {
-    if (this.talentPoints > 0 && this.talents.hasOwnProperty(talentName)) {
+    if (this.talentPoints > 0 && Object.prototype.hasOwnProperty.call(this.talents, talentName)) {
       this.talents[talentName]++;
       this.talentPoints--;
       return true;

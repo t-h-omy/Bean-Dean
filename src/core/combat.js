@@ -49,15 +49,6 @@ export class Combat {
       return { success: false, message: 'Not enough energy' };
     }
 
-    // Check talent requirements if any
-    if (card.requiresTalent) {
-      const meetsReq = card.requiresTalent.check(this.player);
-      if (!meetsReq) {
-        this.deck.hand.push(cardId);
-        return { success: false, message: 'Talent requirement not met' };
-      }
-    }
-
     // Spend energy
     this.energy -= card.cost;
 

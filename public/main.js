@@ -317,6 +317,12 @@ class Game {
     } else {
       endTurnBtn.style.display = 'none';
       
+      // Remove existing combat result if present
+      const existingResult = combatEl.querySelector('.combat-result');
+      if (existingResult) {
+        existingResult.remove();
+      }
+      
       // Show victory/defeat message
       const resultEl = document.createElement('div');
       resultEl.className = 'combat-result';
