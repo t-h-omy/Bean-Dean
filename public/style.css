@@ -1,0 +1,330 @@
+/* Garden Bean PWA Styles */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --primary-green: #2d5016;
+  --light-green: #4a7c2c;
+  --bg-color: #f4f1e8;
+  --text-color: #2c3e50;
+  --player-color: #4a90e2;
+  --harvest-color: #e8b44c;
+  --enemy-color: #e74c3c;
+  --event-color: #9b59b6;
+  --shop-color: #1abc9c;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  min-height: 100vh;
+}
+
+#app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 20px;
+  background: var(--primary-green);
+  color: white;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  margin: 0;
+}
+
+#tick-counter {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+#game-container {
+  display: flex;
+  gap: 20px;
+}
+
+/* Grid Styles */
+#grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  gap: 2px;
+  background: #ddd;
+  padding: 2px;
+  border-radius: 5px;
+  flex: 1;
+  aspect-ratio: 1;
+  max-width: 600px;
+  max-height: 600px;
+}
+
+.tile {
+  background: white;
+  border: 1px solid #ccc;
+  position: relative;
+  min-height: 40px;
+}
+
+.tile-player {
+  background: var(--player-color);
+  border-color: #2980b9;
+}
+
+.tile-harvest {
+  background: var(--harvest-color);
+  border-color: #d39e00;
+}
+
+.tile-enemy {
+  background: var(--enemy-color);
+  border-color: #c0392b;
+}
+
+.tile-event {
+  background: var(--event-color);
+  border-color: #8e44ad;
+}
+
+.tile-shop {
+  background: var(--shop-color);
+  border-color: #16a085;
+}
+
+.hp-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  background: #27ae60;
+  transition: width 0.3s;
+}
+
+.hp-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.7em;
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+/* Sidebar Styles */
+#sidebar {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#sidebar h2 {
+  font-size: 1.3em;
+  margin-bottom: 10px;
+  color: var(--primary-green);
+}
+
+#sidebar h3 {
+  font-size: 1.1em;
+  margin-bottom: 8px;
+  color: var(--light-green);
+}
+
+#player-info, #controls, #legend {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.stat {
+  margin: 5px 0;
+  padding: 5px;
+  background: #f8f9fa;
+  border-radius: 4px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+}
+
+.legend-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+}
+
+/* Overlay Styles */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.overlay-content {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.overlay-content h2 {
+  margin-bottom: 20px;
+  color: var(--primary-green);
+}
+
+/* Combat Styles */
+.combat-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+
+.enemy-info, .player-combat-info {
+  flex: 1;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.hand {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  min-width: 140px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.card-name {
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 1.1em;
+}
+
+.card-cost {
+  font-size: 0.9em;
+  opacity: 0.9;
+  margin-bottom: 8px;
+}
+
+.card-desc {
+  font-size: 0.85em;
+  opacity: 0.95;
+}
+
+button {
+  background: var(--primary-green);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background 0.2s;
+  margin: 5px;
+}
+
+button:hover {
+  background: var(--light-green);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+#end-turn-btn {
+  background: #e67e22;
+}
+
+#end-turn-btn:hover {
+  background: #d35400;
+}
+
+.combat-result {
+  text-align: center;
+  padding: 20px;
+}
+
+.combat-result h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+/* Event Styles */
+.event-choices {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.event-choices button {
+  width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  #game-container {
+    flex-direction: column;
+  }
+
+  #sidebar {
+    width: 100%;
+  }
+
+  #grid {
+    max-width: 100%;
+  }
+
+  .hand {
+    justify-content: center;
+  }
+
+  .card {
+    min-width: 120px;
+  }
+}

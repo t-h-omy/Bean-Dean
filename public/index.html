@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Garden Bean - A Progressive Web App card game about protecting your garden">
+  <meta name="theme-color" content="#2d5016">
+  <title>Garden Bean</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>🌱 Garden Bean</h1>
+      <div id="tick-counter">Ticks: 0</div>
+    </header>
+
+    <main>
+      <div id="game-container">
+        <div id="grid"></div>
+        
+        <aside id="sidebar">
+          <div id="player-info">
+            <h2>Player Info</h2>
+          </div>
+          
+          <div id="controls">
+            <h3>Controls</h3>
+            <p>Use Arrow Keys or WASD to move</p>
+          </div>
+          
+          <div id="legend">
+            <h3>Legend</h3>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #4a90e2;"></div>
+              <span>Player</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #e8b44c;"></div>
+              <span>Harvest</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #e74c3c;"></div>
+              <span>Enemy</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #9b59b6;"></div>
+              <span>Event</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #1abc9c;"></div>
+              <span>Shop</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <!-- Combat Overlay -->
+    <div id="combat-overlay" class="overlay" style="display: none;">
+      <div class="overlay-content">
+        <h2>⚔️ Combat</h2>
+        <div class="combat-info"></div>
+        <div class="hand"></div>
+        <button id="end-turn-btn">End Turn</button>
+      </div>
+    </div>
+
+    <!-- Event Overlay -->
+    <div id="event-overlay" class="overlay" style="display: none;">
+      <div class="overlay-content">
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="main.js"></script>
+  <script>
+    // Register service worker
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js')
+          .then(reg => console.log('Service Worker registered'))
+          .catch(err => console.log('Service Worker registration failed:', err));
+      });
+    }
+  </script>
+</body>
+</html>
